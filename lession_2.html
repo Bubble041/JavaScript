@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-Lession2</title>
+</head>
+<body>
+    <script>
+        // // Задание 1
+        // var a = 1, b = 1, c, d;
+        // c = ++a; alert(c);           // 2 - префиксная форма (сначала прибавляем 1, потом выводим на экран);
+        // d = b++; alert(d);           // 1 - постфиксная форма (сначала выводим d, потом прибавляем b + 1);
+        // c = (2+ ++a); alert(c);      // 5 - a уже равна 2 (из первого пункта). Прибаляем к ней ещё 1 и + 2;
+        // d = (2+ b++); alert(d);      // 4 - тоже самое, но используется постфиксная форма.
+        // alert(a);                    // 3 - к элемену дважды прибавили 1 ранее в коде;
+        // alert(b);                    // 3 - к элемену дважды прибавили 1 ранее в коде;
+
+        // // Задание 2
+        // var a = 2;
+        // var x = 1 + (a *= 2);
+        // alert(x);
+        // // 5. - сначала мы умножаем а на 2 и прибавляем 1. Запись a *= 2 это тоже самое, что и а = а * 2;
+
+        // //Задание 3
+        //     function comparison(a, b) {
+        //     if(a > 0 && b > 0) {
+        //         alert(a - b);
+        //     } else if(a < 0 && b < 0) {
+        //         alert(a * b);
+        //     } else {
+        //         alert(a + b);
+        //     }
+        //     return;
+        // }
+        // let a = +prompt('Введите первое число:');
+        // let b = +prompt('Введите второе число:');
+        // comparison(a,b);
+
+    //     // Задание 4
+    //     function getRandom(min, max) {
+    //         min = Math.ceil(min);
+    //         max = Math.floor(max);
+    //         return Math.floor(Math.random() * (max - min + 1)) + min;
+    //     }
+    //         switch (a) {
+    //         case 1: alert("Ваше число " +  1); break;
+    //         case 2: alert("Ваше число " +  2); break;
+    //         case 3: alert("Ваше число " +  3); break;
+    //         case 4: alert("Ваше число " +  4); break;
+    //         case 5: alert("Ваше число " +  5); break;
+    //         case 6: alert("Ваше число " +  6); break;
+    //         case 7: alert("Ваше число " +  7); break;
+    //         case 8: alert("Ваше число " +  8); break;
+    //         case 9: alert("Ваше число " +  9); break;
+    //         case 10: alert("Ваше число " +  10); break;
+    //         case 11: alert("Ваше число " +  11); break;
+    //         case 12: alert("Ваше число " +  12); break;
+    //         case 13: alert("Ваше число " +  13); break;
+    //         case 14: alert("Ваше число " +  14); break;
+    //         case 15: alert("Ваше число " +  15); break;
+    //   }
+    //     let a = getRandom(0, 15);
+        
+        
+        // // Заданиz 5-6
+        // function sum(a, b) {
+        //     alert(a + b);
+        //     return;
+        // }
+
+        // function subtract(a, b) {
+        //     alert(a - b);
+        //     return;
+        // }
+
+        // function product(a, b) {
+        //     alert(a * b);
+        //     return;
+        // }
+
+        // function segmentation(a, b) {
+        //     alert(a / b);
+        //     return;
+        // }
+
+        // function mathOperation(arg1, arg2, operation) {
+        //     if (Number.isNaN(arg1) || Number.isNaN(arg2)) {
+        //         alert("Необходимо ввести целые числа");
+        //         mathOperation();
+        //         return;
+        //     }
+        //     switch (operation) {
+        //         case 'Сложение': sum(arg1, arg2); break;
+        //         case '+': sum(arg1, arg2); break;
+        //         case 'Умножение': product(arg1, arg2); break;
+        //         case '*': product(arg1, arg2); break;
+        //         case 'Вычитание': subtract(arg1, arg2); break;
+        //         case '-': subtract(arg1, arg2); break;
+        //         case 'Деление': segmentation(arg1, arg2); break;
+        //         case '/': segmentation(arg1, arg2); break;
+        //         default: return null;
+        //     }
+        //     return;
+        //     }
+        // let num1 = +prompt("Введите первое число:");
+        // let num2 = +prompt("Введите второе число:");
+        // let operationName = prompt("Введите название операции, которую вы хотите применить: 'Сложение' или знак '+', 'Вычитание' или знак '-', 'Умножение' или знак '*', 'Деление' или знак '/'");
+        // mathOperation(num1, num2, operationName);
+
+        // Задание 7
+        // alert( null > 0 );  // (1) false - в данном случае, null приравнивается к 0. Поэтому false
+        // alert( null == 0 ); // (2) false - при не строгом сравнении, null не равер ничему другому, кроме undefined
+        // alert( null >= 0 ); // (3) true - в данном случае, null приравнивается к 0. Поэтому true
+
+        // // Задание 8
+
+        // function power(val, pow) {
+        //     let result = val;
+        //     for (let i = 1; i < pow; i++) {
+        //         result *= val;
+        //     }
+
+        //     return result;
+        //     }
+        //     let val = prompt("Введите число: ", '');
+        //     let pow = prompt("Введите степень: ", '');
+
+        //     if (pow < 1) {
+        //     alert(`Степень ${pow} не поддерживается, используйте натуральное число`);
+        //     } else {
+        //     alert(power(val, pow));
+        // }
+    </script>
+</body>
+</html>
