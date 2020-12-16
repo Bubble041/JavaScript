@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=100vw, initial-scale=1.0">
+    <title>JS Lession-3</title>
+</head>
+<body>
+    <script>
+    "use strict";
+    let n = 0;
+        while (n <= 100) {
+            let check = true;
+            for (let i = 2; i < n; i++){
+                if (n % i === 0) {
+                    check = false;
+                    break;
+                }
+            }
+            if (check) console.log(n);
+            n++;
+        }
+    </script>
+</body>
+</html>

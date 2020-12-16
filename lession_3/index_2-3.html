@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=100vw, initial-scale=1.0">
+    <title>JS Lession-3</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        let basket = [
+            {
+                product: "Яблоки",
+                price: 200
+            },
+            {
+                product: "Груши",
+                price: 100
+            },
+            {
+                product: "Картошка",
+                price: 50
+            },
+            {
+                product: "Морковь",
+                price: 80
+            }
+        ];
+        function countBasketPrice(basket) {
+            let basketPrice = 0;
+            for (let position of basket) {
+                basketPrice = basketPrice + position.price;
+            }
+            return basketPrice;
+        }
+
+        console.log("Вы заказали товаров на сумму: " + countBasketPrice(basket) +" рублей");
+    </script>
+</body>
+</html>
