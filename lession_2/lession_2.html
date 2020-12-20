@@ -43,24 +43,34 @@
     //         max = Math.floor(max);
     //         return Math.floor(Math.random() * (max - min + 1)) + min;
     //     }
-    //         switch (a) {
-    //         case 1: alert("Ваше число " +  1); break;
-    //         case 2: alert("Ваше число " +  2); break;
-    //         case 3: alert("Ваше число " +  3); break;
-    //         case 4: alert("Ваше число " +  4); break;
-    //         case 5: alert("Ваше число " +  5); break;
-    //         case 6: alert("Ваше число " +  6); break;
-    //         case 7: alert("Ваше число " +  7); break;
-    //         case 8: alert("Ваше число " +  8); break;
-    //         case 9: alert("Ваше число " +  9); break;
-    //         case 10: alert("Ваше число " +  10); break;
-    //         case 11: alert("Ваше число " +  11); break;
-    //         case 12: alert("Ваше число " +  12); break;
-    //         case 13: alert("Ваше число " +  13); break;
-    //         case 14: alert("Ваше число " +  14); break;
-    //         case 15: alert("Ваше число " +  15); break;
-    //   }
+
+    //     function getSequence(num) {
+    //         let b = [];
+    //         for (let i = a; i <= 15; i++) {
+    //             b.push(num);
+    //             num++;
+    //         }
+    //         return b;
+    //     }
     //     let a = getRandom(0, 15);
+    //     let b = getSequence(a);
+    //         switch (a) {
+    //         case 1: alert("Ваше число " +  b.join(', ')); break;
+    //         case 2: alert("Ваше число " +  b.join(', ')); break;
+    //         case 3: alert("Ваше число " +  b.join(', ')); break;
+    //         case 4: alert("Ваше число " +  b.join(', ')); break;
+    //         case 5: alert("Ваше число " +  b.join(', ')); break;
+    //         case 6: alert("Ваше число " +  b.join(', ')); break;
+    //         case 7: alert("Ваше число " +  b.join(', ')); break;
+    //         case 8: alert("Ваше число " +  b.join(', ')); break;
+    //         case 9: alert("Ваше число " +  b.join(', ')); break;
+    //         case 10: alert("Ваше число " +  b.join(', ')); break;
+    //         case 11: alert("Ваше число " +  b.join(', ')); break;
+    //         case 12: alert("Ваше число " +  b.join(', ')); break;
+    //         case 13: alert("Ваше число " +  b.join(', ')); break;
+    //         case 14: alert("Ваше число " +  b.join(', ')); break;
+    //         case 15: alert("Ваше число " +  b.join(', ')); break;
+    //   }
         
         
         // // Заданиz 5-6
@@ -91,18 +101,17 @@
         //         return;
         //     }
         //     switch (operation) {
-        //         case 'Сложение': sum(arg1, arg2); break;
-        //         case '+': sum(arg1, arg2); break;
-        //         case 'Умножение': product(arg1, arg2); break;
-        //         case '*': product(arg1, arg2); break;
-        //         case 'Вычитание': subtract(arg1, arg2); break;
-        //         case '-': subtract(arg1, arg2); break;
-        //         case 'Деление': segmentation(arg1, arg2); break;
-        //         case '/': segmentation(arg1, arg2); break;
-        //         default: return null;
+        //         case 'Сложение': return sum(arg1, arg2);
+        //         case '+': return sum(arg1, arg2);
+        //         case 'Умножение': return product(arg1, arg2);
+        //         case '*': return product(arg1, arg2);
+        //         case 'Вычитание': return subtract(arg1, arg2);
+        //         case '-': return subtract(arg1, arg2);
+        //         case 'Деление': return segmentation(arg1, arg2);
+        //         case '/': return segmentation(arg1, arg2);
+        //         default: return alert('Такой операции не существует. Перезагрузите страницу, чтоб начать сначала.');
         //     }
-        //     return;
-        //     }
+        // }
         // let num1 = +prompt("Введите первое число:");
         // let num2 = +prompt("Введите второе число:");
         // let operationName = prompt("Введите название операции, которую вы хотите применить: 'Сложение' или знак '+', 'Вычитание' или знак '-', 'Умножение' или знак '*', 'Деление' или знак '/'");

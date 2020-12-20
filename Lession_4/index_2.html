@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=100vw, initial-scale=1.0">
+    <title>JS Lession-3</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        function getBasketPrice(basket) {
+            return basket.reduce(function(acc, item){
+                acc = acc + (item.price * item.quantity);
+                return acc;
+            }, 0);
+        }      
+
+        const apple = {
+            price: 200,
+            quantity: 2
+        };
+
+        const pears = {
+            price: 100,
+            quantity: 3
+        };
+
+        const potato = {
+            price: 140,
+            quantity: 2
+        };
+
+        let basket = {
+            apple,
+            pears,
+            potato,
+        };    
+        console.log(`Вы заказали товаров на сумму: ${getBasketPrice(Object.values(basket))} рублей`);
+    </script>
+</body>
+</html>

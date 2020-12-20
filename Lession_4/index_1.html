@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=100vw, initial-scale=1.0">
+    <title>JS Lession-4</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        function transform(number) {
+            if (num <= 9) {
+                obj.units = num;
+            } else if ( num <= 999) {
+                obj.units = Math.floor(num % 10);
+                obj.tens = Math.floor(num / 10 % 10);
+                obj.hundreds = Math.floor(num / 100 % 10);
+            } else {
+                alert('Вы ввели число меньше 0 или больше 999! Не надо так.')
+            }
+        }
+        let num = parseInt(+prompt('Введите число от 0 до 999: '));
+        let obj = {
+            units: 0,
+            tens: 0,
+            hundreds: 0
+        }
+        transform(num);
+        console.log(obj);
+    </script>
+</body>
+</html>
