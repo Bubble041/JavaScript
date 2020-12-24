@@ -8,34 +8,33 @@
 <body>
     <script>
         "use strict";
-        function getBasketPrice(basket) {
-            return basket.reduce(function(acc, item){
-                acc = acc + (item.price * item.quantity);
-                return acc;
-            }, 0);
-        }      
-
-        const apple = {
-            price: 200,
-            quantity: 2
-        };
-
-        const pears = {
-            price: 100,
-            quantity: 3
-        };
-
-        const potato = {
-            price: 140,
-            quantity: 2
-        };
-
         let basket = {
-            apple,
-            pears,
-            potato,
-        };    
-        console.log(`Вы заказали товаров на сумму: ${getBasketPrice(Object.values(basket))} рублей`);
+            goods: [
+            {
+                product: "Яблоки",
+                price: 200
+            },
+            {
+                product: "Груши",
+                price: 100
+            },
+            {
+                product: "Картошка",
+                price: 50
+            },
+            {
+                product: "Морковь",
+                price: 80
+            }
+            ],
+            countBasketPrice() {
+                return this.goods.reduce((totalPrice, cartItem) => totalPrice += cartItem.price, 0);
+            }
+        
+        };
+        
+        console.log(`Вы заказали товара на ${basket.countBasketPrice()} рублей`);
+
     </script>
 </body>
 </html>

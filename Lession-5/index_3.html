@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lession 5</title>
+    <style>
+        .basket {
+            width: 300px;
+        }
+
+        .good {
+            background-color: gray;
+            margin-bottom: 5px;
+            border: 1px solid black;
+            border-radius: 10%;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="basket">
+    </div>
+    <button class="basket_btn">Удалить товар</button>
+    <script>
+        "use strict";
+        let basketElements = {
+            render (good) {
+                return `<div class="good">
+                            <p><b>Наименование</b>: ${good.title}</p>
+                            <p><b>Цена за шт.</b>: ${good.price}</p>
+                            <p><b>Количество</b>: ${good.quantity}</p>
+                            <p><b>Стоимость</b>: ${good.quantity * good.price}</p>
+                        </div>`
+            }
+        };
+
+        let basket = {
+            divBasket: null,
+            btnBasket: null,
+            basketElements,
+            goods: [
+            {
+                title: "Яблоки",
+                price: 200,
+                quantity: 1
+            },
+            {
+                title: "Груши",
+                price: 100,
+                quantity: 3
+            },
+            {
+                title: "Картошка",
+                price: 50,
+                quantity: 2
+            },
+            {
+                title: "Морковь",
+                price: 80,
+                quantity: 2
+            }
+            ],
+
+            init() {
+                this.divBasket = document.querySelector('.basket');
+                this.btnBasket = document.querySelector('.basket_btn');
+                this.btnBasket.addEventListener('click', this.deleteGood.bind(this));
+                this.render();
+            },
+            countBasketPrice() {
+                return this.goods.reduce((totalPrice, cartItem) => totalPrice += cartItem.price * cartItem.quantity, 0);
+            },
+
+            getProductQuantity() {
+                return this.goods.reduce((totalQuantity, cartItem) => totalQuantity += cartItem.quantity, 0);
+            },
+
+            render () {
+                if (this.goods.length) {
+                    this.goods.forEach(good => {
+                        this.divBasket.insertAdjacentHTML('beforeend', this.basketElements.render(good));
+                    });
+                    this.divBasket.insertAdjacentHTML('beforeend', `В корзине ${this.getProductQuantity()} товаров(а) стоимостью ${this.countBasketPrice()}`);
+                } else {
+                    this.divBasket.textContent = `Корзина пуста`;
+                };
+            },
+
+            deleteGood() {
+                this.goods = [];
+                this.render();
+            }
+        };
+
+        basket.init();
+    </script>
+</body>
+</html>
