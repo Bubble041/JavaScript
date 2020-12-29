@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lession 5</title>
+    <style>
+        .basket {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid gray;
+            width: 600px;
+            padding-left: 20px;
+        }
+
+        .good {
+            background-color: gray;
+            margin-bottom: 5px;
+            border: 1px solid black;
+            border-radius: 10%;
+            padding-left: 20px;
+        }
+
+        button {
+
+        color: #fff; 
+        text-decoration: none; 
+        user-select: none; 
+        background: rgb(212,75,56);
+        padding: .7em 1.5em; 
+        outline: none;
+        margin-bottom: 20px;
+        } 
+        button:hover { background: rgb(232,95,76); } 
+        button:active { background: rgb(152,15,0); } 
+
+        .catalog {
+            display: flex;
+            justify-content: space-around;
+            border: 1px solid gray;
+            width: 100vw;
+            margin-bottom: 10px;
+        }
+        .galleryWrapper__screen{
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #222;
+      opacity: 0.8;
+      position: fixed;
+      top: 0;
+      z-index: 100;
+      display: block;
+      text-align: center;
+    }
+    .galleryWrapper__image {
+      max-height: 80%;
+      max-width: 80%;
+      z-index: 101;
+      position: absolute;
+      margin: auto;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
+    .galleryWrapper__close {
+      z-index: 101;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .galleryWrapper__next {
+        width: 175px;
+        z-index: 102;
+        position: absolute;
+        top: 270px;
+        right: 0;
+    }
+
+    .galleryWrapper__before {
+        width: 175px;
+        z-index: 102;
+        position: absolute;
+        top: 270px;
+        left: 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="catalog galleryPreviewsContainer">
+        <h2>Каталог</h2>
+    </div>
+    <div class="basket galleryPreviewsContainer">
+        <h2>Корзина</h2>
+    </div>
+    <button class="basket_btn">Очистить корзину</button>
+    <script>
+        "use strict";      
+        let catalog = {
+            divCatalog: null,
+            basket: {},
+            goods: [
+            {
+                title: "Яблоки",
+                price: 200,
+                quantity: 1,
+                id_product: 0,
+            },
+            {
+                title: "Груши",
+                price: 100,
+                quantity: 1,
+                id_product: 1,
+            },
+            {
+                title: "Морковь",
+                price: 80,
+                quantity: 1,
+                id_product: 2,
+            }
+            ],
+
+            init(basket) {
+                this.divCatalog = document.querySelector('.catalog');
+                this.basket = basket;
+                this.render();
+                this.addCatalogsButtonListner();
+            },
+            
+            render () {
+                if (this.goods.length > 0) {
+                    this.renderCatalog();
+                } else {
+                    this.renderEmptyCatalog();
+                }
+            },
+
+            addCatalogsButtonListner() {
+                this.divCatalog.addEventListener('click', event => this.addGood(event));
+            },
+
+            addGood() {
+                if (!event.target.classList.contains('catalog__btn')) return;
+                let id_product = +event.target.dataset.id_product;
+                this.basket.addToBasket(id_product);
+            },
+
+            renderCatalog() {
+                this.divCatalog.innerHTML = '';
+                this.goods.forEach(good => {
+                    this.divCatalog.insertAdjacentHTML('beforeend', this.renderCatalogGood(good));
+                });
+            },
+
+            renderCatalogGood(good) {
+                return `<div class="product">
+                <img class="${good.id_product}" src="img/min/${good.id_product}.jpg" data-full_image_url="img/max/${good.id_product}.jpg" alt="${good.title}">
+                <p>${good.title}</p>
+                <p>${good.price} руб.</p>
+                <button class="catalog__btn" data-id_product="${good.id_product}">Купить товар</button>
+            </div>`;
+            },
+
+            renderEmptyCatalog() {
+                this.divCatalog.innerHTML = 'Каталог пуст.';
+            },
+        };
+
+        let basket = {
+        divBasket: null,
+        basketClear: null,
+        catalogGoods: [],
+        goods: [],
+        
+        init(catalogGoods) {
+            this.divBasket = document.querySelector(`.basket`);
+            this.basketClear = document.querySelector(`.basket_btn`);
+            this.catalogGoods = catalogGoods;
+            this.addBasketsButtonListner();
+            this.render();
+        },
+
+        countBasketPrice() {
+                return this.goods.reduce((totalPrice, cartItem) => totalPrice += cartItem.price * cartItem.quantity, 0);
+            },
+
+        getProductQuantity() {
+                return this.goods.reduce((totalQuantity, cartItem) => totalQuantity += cartItem.quantity, 0);
+            },
+
+        addBasketsButtonListner(){
+            this.basketClear.addEventListener('click', this.clearBasket.bind(this));
+        },
+
+        clearBasket() {
+            this.goods = [];
+            this.render();
+        },
+        render() {
+            if (this.goods.length > 0) {
+                this.renderBasket();
+            } else {
+                this.renderEmptyBasket();
+            }
+        },
+        findProduct(id_product) {
+        return this.catalogGoods.find(product => product.id_product === id_product);
+        },
+
+        addToBasket(id_product) {
+            let product = this.findProduct(id_product);
+
+            if (product) {
+                this.goods.push({...product});
+                this.render();
+            } else {
+                alert('Ошибка добавления!');
+            }
+        },
+
+        renderEmptyBasket() {
+        this.divBasket.innerHTML = '';
+        this.divBasket.insertAdjacentHTML('beforeend', '<b>Корзина пуста.</b>');
+        },
+
+        renderBasket() {
+        this.divBasket.innerHTML = '';
+        this.goods.forEach(item => {
+            this.divBasket.insertAdjacentHTML('beforeend', this.renderBasketItem(item));
+        });
+        this.divBasket.insertAdjacentHTML('beforeend', `<b>В корзине ${this.getProductQuantity()} товаров(а) стоимостью ${this.countBasketPrice()}<b>`);
+        },
+
+        renderBasketItem(item) {
+        return `<div>
+                <img src="img/min/${item.id_product}.jpg" data-full_image_url="img/max/${item.id_product}.jpg" alt="${item.title}">
+                <h3>${item.title}</h3>
+                <p>${item.price} руб.</p>
+                <p>${item.quantity} шт.</p>
+            </div>`;
+        },
+        };
+        let gallery = {
+            settings: {
+                previewSelector: '.mySuperGallery',
+                openedImageWrapperClass: 'galleryWrapper',
+                openedImageClass: 'galleryWrapper__image',
+                openedImageScreenClass: 'galleryWrapper__screen',
+                openedImageCloseBtnClass: 'galleryWrapper__close',
+                openedImageCloseBtnSrc: 'img/gallery/close.png',
+                openedImageNextBtnClass: `galleryWrapper__next`,
+                openedImageNexteBtnSrc: 'img/gallery/next.png',
+                openedImageBeforeBtnClass: `galleryWrapper__before`,
+                openedImageBeforeBtnSrc: 'img/gallery/before.png',
+                imageNotFoundSrc: 'img/gallery/duck.gif',
+            },
+            init(settings) {
+                this.settings = Object.assign(this.settings, settings);
+                document
+                    .querySelector(this.settings.previewSelector)
+                    .addEventListener('click', event => this.containerClickHandler(event));
+            },
+
+            containerClickHandler(event) {
+                if (event.target.tagName !== 'IMG') {
+                    return;
+                }
+                let img = new Image();
+                img.onload = () => this.openImage(event.target.dataset.full_image_url);
+                img.onerror = () => this.openImage(this.settings.imageNotFoundSrc);
+                img.src = event.target.dataset.full_image_url;
+  },
+            openImage(src) {
+                this.getScreenContainer().querySelector(`.${this.settings.openedImageClass}`).src = src;
+            },
+
+            getScreenContainer() {
+                let galleryWrapperElement = document.querySelector(`.${this.settings.openedImageWrapperClass}`);
+                if (galleryWrapperElement) {
+                    return galleryWrapperElement;
+                }
+                return this.createScreenContainer();
+            },
+
+            createScreenContainer() {
+                const galleryWrapperElement = document.createElement('div');
+                galleryWrapperElement.classList.add(this.settings.openedImageWrapperClass);
+
+                const galleryScreenElement = document.createElement('div');
+                galleryScreenElement.classList.add(this.settings.openedImageScreenClass);
+                galleryWrapperElement.appendChild(galleryScreenElement);
+
+                const closeImageElement = new Image();
+                closeImageElement.classList.add(this.settings.openedImageCloseBtnClass);
+                closeImageElement.src = this.settings.openedImageCloseBtnSrc;
+                closeImageElement.addEventListener('click', () => this.close());
+                galleryWrapperElement.appendChild(closeImageElement);
+
+                const nextImageElement = new Image();
+                nextImageElement.classList.add(this.settings.openedImageNextBtnClass);
+                nextImageElement.src = this.settings.openedImageNexteBtnSrc;
+                nextImageElement.addEventListener('click', () => this.next());
+                galleryWrapperElement.appendChild(nextImageElement);
+
+                const beforeImageElement = new Image();
+                beforeImageElement.classList.add(this.settings.openedImageBeforeBtnClass);
+                beforeImageElement.src = this.settings.openedImageBeforeBtnSrc;
+                beforeImageElement.addEventListener('click', () => this.before());
+                galleryWrapperElement.appendChild(beforeImageElement);
+
+                const image = new Image();
+                image.classList.add(this.settings.openedImageClass);
+                galleryWrapperElement.appendChild(image);
+
+
+                document.body.appendChild(galleryWrapperElement);
+                return galleryWrapperElement;
+            },
+
+            close() {
+                document.querySelector(`.${this.settings.openedImageWrapperClass}`).remove();
+            }
+        }
+        catalog.init(basket);
+        basket.init(catalog.goods);
+        window.onload = () => gallery.init({previewSelector: '.galleryPreviewsContainer'});
+    </script>
+</body>
+</html>
